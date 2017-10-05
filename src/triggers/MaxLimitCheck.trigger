@@ -8,7 +8,7 @@ trigger MaxLimitCheck  on Student__c (before Insert) {
         
     }
     
-    Map<id,Class__c> classMap = new Map<id,class__c>([Select Number_of_Students__c ,Max_Size__c ,(select id from students__r)  from Class__c where id in :classIDMap.keySet() ]);
+    Map<id,Class__c> classMap = new Map<id,class__c>([SELECT Number_of_Students__c ,Max_Size__c ,(SELECT id FROM students__r)  FROM Class__c WHERE id in :classIDMap.keySet() ]);
     
     for(Student__c s : trigger.new){
         if(classIDMap.get(s.class__c) == (Integer)classMap.get(s.class__c).Max_Size__c ){
@@ -18,7 +18,6 @@ trigger MaxLimitCheck  on Student__c (before Insert) {
             Integer i = (Integer)classIDMap.get(s.class__c);
             i++;
             classIDMap.put(s.class__c,i);
-            //classMap.get(s.class__c).Number_of_Students__c++;
         }
     }
 }

@@ -4,8 +4,7 @@ In Opportunity, If the stage is changed from another value  to CLOSED_WON or CLO
 trigger UpdateClosedDate on Opportunity (before update) {
   
     for(Opportunity opp: Trigger.new){
-        if((trigger.oldMap.get(opp.id).StageName != 'CLOSED WON' || trigger.oldMap.get(opp.id).StageName != 'CLOSED LOST') && (opp.StageName == 'CLOSED WON' || opp.StageName == 'CLOSED LOST')){
-            // update closed date in trigger.new
+        if((trigger.oldMap.get(opp.ID).StageName != 'CLOSED WON' || trigger.oldMap.get(opp.ID).StageName != 'CLOSED LOST') && (opp.StageName == 'CLOSED WON' || opp.StageName == 'CLOSED LOST')){
             opp.closeDate = System.today();
         }     
     }

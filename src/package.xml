@@ -13,8 +13,16 @@
     <types>
         <members>Class__c</members>
         <members>Student__c</members>
-        <members>Teach__c</members>
         <name>CustomTab</name>
+    </types>
+    <types>
+        <members>RestrictHindiTeacher</members>
+        <members>RestrictClassDeletion</members>
+        <members>MaxLimitCheck</members>
+        <members>UpdateMyCount</members>
+        <members>UpdateClosedDate</members>
+        <members>DeleteOpportunityLineItem</members>
+        <name>ApexTrigger</name>
     </types>
     <version>38.0</version>
 </Package>
