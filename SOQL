@@ -21,7 +21,7 @@
 	Query: How to give the date dynamically
 	
 -> All Classes with Students as sub query where student Name Starts with “S”
-	SELECT Name, (SELECT Student__c.Class__r.Name, Student__c.Name FROM Class__c.Students__r WHERE Name like 'S%') FROM Class__c
+	SELECT Name, (SELECT Student__c.Name FROM Class__c.Students__r WHERE Name like 'S%') FROM Class__c
 
 -> All Teachers who have Hindi and English both subjects
 	SELECT Name FROM Contact WHERE Subjects__c INCLUDES ('English;Hindi')
