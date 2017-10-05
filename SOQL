@@ -17,7 +17,7 @@
 	SELECT Name FROM Student__c WHERE CALENDAR_YEAR(Date_Of_Birth__c)> 2000
 
 -> All Leads Where ModifiedDate in current month
-	SELECT Name FROM Lead WHERE CALENDAR_MONTH(LastModifiedDate) = 10 
+	SELECT Name FROM Lead WHERE LastModifiedDate = THIS_MONTH 
 	Query: How to give the date dynamically
 	
 -> All Classes with Students as sub query where student Name Starts with “S”
