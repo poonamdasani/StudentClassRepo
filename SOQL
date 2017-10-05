@@ -1,31 +1,30 @@
--> Write SOQL Select all strudent Name,Dob,Sex where LastName starts with “S”
-	Select Name, DOB__c, Sex__c from Student__c where Last_Name__c LIKE 'S%'
+-> Write SOQL Select all student Name,Dob,Sex where LastName starts with “S”
+	SELECT Name, DOB__c, Sex__c FROM Student__c WHERE Last_Name__c LIKE 'S%'
 	
 -> Select All students where ClassName starts with “X”
-	Select Class__r.name, Student__c.First_Name__c FROM Student__c WHERE Class__r.Name LIKE 'X%' 
+	SELECT Class__r.Name, Student__c.Name FROM Student__c WHERE Class__r.Name LIKE 'X%' 
 
 -> Select all Student and ClassName
-	select name, (Select First_Name__c from Class__c.Students__r) from Class__c
+	SELECT Name, Class__r.Name FROM Student__c
 
 -> Select all Classes with students in every class as sub query.
-	select Name, (select Student__c.First_Name__c from Class__c.Students__r ) from Class__c 
+	SELECT Name, (SELECT Student__c.Name FROM Class__c.Students__r ) FROM Class__c 
 
 -> Select all students where class teacher name starts with “S”
-	select First_Name__c  from Student__c where Class__r.Class_Teacher__r.Name like 's%'
+	SELECT Name FROM Student__c WHERE Class__r.Class_Teacher__r.Name like 's%'
 
 -> All students where DOB > Year 2000
-	select First_Name__c  from Student__c where CALENDAR_YEAR(Date_Of_Birth__c)> 2000
+	SELECT Name FROM Student__c WHERE CALENDAR_YEAR(Date_Of_Birth__c)> 2000
 
 -> All Leads Where ModifiedDate in current month
-	select FirstName from Lead where CALENDAR_MONTH(LastModifiedDate)= 10 
-		//CALENDAR_MONTH(CURDATE())
+	SELECT Name FROM Lead WHERE CALENDAR_MONTH(LastModifiedDate) = 10 
 	Query: How to give the date dynamically
 	
 -> All Classes with Students as sub query where student Name Starts with “S”
-	select (select Student__c.Class__r.Name , Student__c.name, Student__c.First_Name__c from Class__c.Students__r where First_Name__c like 'j%') from Class__c
+	SELECT Name, (SELECT Student__c.Class__r.Name, Student__c.Name FROM Class__c.Students__r WHERE Name like 'S%') FROM Class__c
 
 -> All Teachers who have Hindi and English both subjects
-	select Name from Contact where Subjects__c INCLUDES ('English;Hindi')
+	SELECT Name FROM Contact WHERE Subjects__c INCLUDES ('English;Hindi')
 
 -> All students who have hindi or maths
-	select Name from Contact where Subjects__c INCLUDES ('Mathematics','Hindi')
+	SELECT Name FROM Student__c WHERE Class__r.Class_Teacher__r.Subjects__c INCLUDES ('Mathematics','Hindi')

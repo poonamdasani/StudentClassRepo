@@ -1,5 +1,5 @@
  -> Student DOB should not be greater than TODAY
- 	Rule: DOB__c < Today()
+ 	Rule: DOB__c > Today()
  	Error Message: Date of birth should be less that today
  	
  -> Validates that the account Billing Zip/Postal Code is in 99999 or 99999-9999 format if Billing Country is USA or US.
