@@ -1,0 +1,30 @@
+-> Write SOQL Select all student Name,Dob,Sex where LastName starts with “S”
+	SELECT Name, DOB__c, Sex__c FROM Student__c WHERE Last_Name__c LIKE 'S%'
+	
+-> Select All students where ClassName starts with “X”
+	SELECT Class__r.Name, Student__c.Name FROM Student__c WHERE Class__r.Name LIKE 'X%' 
+
+-> Select all Student and ClassName
+	SELECT Name, Class__r.Name FROM Student__c
+
+-> Select all Classes with students in every class as sub query.
+	SELECT Name, (SELECT Student__c.Name FROM Class__c.Students__r ) FROM Class__c 
+
+-> Select all students where class teacher name starts with “S”
+	SELECT Name FROM Student__c WHERE Class__r.Class_Teacher__r.Name like 's%'
+
+-> All students where DOB > Year 2000
+	SELECT Name FROM Student__c WHERE CALENDAR_YEAR(Date_Of_Birth__c)> 2000
+
+-> All Leads Where ModifiedDate in current month
+	SELECT Name FROM Lead WHERE LastModifiedDate = THIS_MONTH 
+	Query: How to give the date dynamically
+	
+-> All Classes with Students as sub query where student Name Starts with “S”
+	SELECT Name, (SELECT Student__c.Name FROM Class__c.Students__r WHERE Name like 'S%') FROM Class__c
+
+-> All Teachers who have Hindi and English both subjects
+	SELECT Name FROM Contact WHERE Subjects__c INCLUDES ('English;Hindi')
+
+-> All students who have hindi or maths
+	SELECT Name FROM Student__c WHERE Class__r.Class_Teacher__r.Subjects__c INCLUDES ('Mathematics','Hindi')
