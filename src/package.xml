@@ -16,5 +16,26 @@
         <members>Teach__c</members>
         <name>CustomTab</name>
     </types>
+    <types>
+        <members>StudentsInClass</members>
+        <members>StudentsSelecter</members>
+        <members>TestStudentsInClass</members>
+        <members>Students</members>
+        <members>ClassWithStudentId</members>
+        <members>WorkingDays</members>
+        <members>Stack</members>
+        <members>MySchedule</members>
+        <members>Opportunities</members>
+        <members>OpportunitiesSelector</members>
+        <members>AccountsService</members>
+        <members>ContactsSelector</members>
+        <members>Accounts</members>
+        <members>Sobjects</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>OpportunityTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
     <version>38.0</version>
 </Package>
