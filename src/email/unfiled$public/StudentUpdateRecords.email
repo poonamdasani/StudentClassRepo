@@ -1,0 +1,3 @@
+Your Record have been updated successfully. 
+Class : {!Student__c.Class__c} 
+Name : {!Student__c. Name} {!Student__c.Last_Name__c}

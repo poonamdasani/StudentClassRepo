@@ -1,0 +1,6 @@
+Dear {!Loan__c.ApplicantName__c} 
+
+Your Loan has been {!Loan__c.Status__c} 
+
+
+Thanks & Regards
