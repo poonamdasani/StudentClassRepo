@@ -1,0 +1,35 @@
+<apex:page standardController="Contact">
+    <apex:toolbar width="100%">{!Contact.RecordType.Name}</apex:toolbar>
+    <!--
+    <apex:form >
+        <apex:pageBlock title="Teacher Detail" mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!edit}" value="Edit"/>
+                <apex:commandButton action="{!delete}" value="Delete"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection collapsible="false" title="Information" columns="2">
+                
+                
+                <apex:toolbar height="25px"  width="100%">{!Contact.RecordType.Name}</apex:toolbar>
+                <apex:outputField label="Owner Name" value="{!Contact.Owner.Name}"/>
+                <apex:outputField value="{!Contact.Phone}"/>
+                <apex:outputField value="{!Contact.Name}"/>
+                <apex:outputField value="{!Contact.HomePhone}"/>
+                <apex:outputField value="{!Contact.Account.Name}"/>
+                <apex:outputField value="{!Contact.MobilePhone}"/>
+                <apex:outputField value="{!Contact.Title}"/>
+                <apex:outputField value="{!Contact.Fax}"/>
+                <apex:outputField value="{!Contact.Department}"/>
+                <apex:outputField value="{!Contact.Email}"/>
+                <apex:outputField value="{!Contact.Birthdate}"/>
+                <apex:outputField value="{!Contact.Description}"/>
+                <apex:outputField value="{!Contact.LeadSource}"/>
+                <apex:outputField value="{!Contact.Experience__c}"/>
+                <apex:outputField value="{!Contact.Languages__c}"/>
+                <apex:outputField value="{!Contact.Level__c}"/>
+                <apex:outputField value="{!Contact.Subjects__c}"/>
+                
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form> -->
+</apex:page>

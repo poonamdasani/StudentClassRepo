@@ -1,0 +1,22 @@
+<apex:page standardController="Student__c" tabStyle="Student__c">
+    <apex:sectionHeader title="Student" />
+    <apex:pageMessages />
+    <apex:form >
+        <apex:pageblock title="Student Button Overriden">          
+            <apex:pageblocksection >
+                <apex:inputfield value="{!Student__c.Name}"/>
+                <apex:inputfield value="{!Student__c.Last_Name__c}"/>
+                <apex:inputfield value="{!Student__c.Class__c}"/>
+                <apex:inputfield value="{!Student__c.DOB__c}"/> 
+                <apex:inputfield value="{!Student__c.Email__c}"/> 
+                <apex:inputfield value="{!Student__c.Married__c}"/> 
+                <apex:inputfield value="{!Student__c.Sex__c}"/>  
+                <apex:inputfield value="{!Student__c.Wife_Name__c}"/>              
+            </apex:pageblocksection>
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!save}"/>
+                <apex:commandbutton value="Cancel" action="{!cancel}"/>
+            </apex:pageblockbuttons>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

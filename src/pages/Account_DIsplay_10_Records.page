@@ -1,0 +1,37 @@
+<apex:page controller="MyAccountControllerWithPagination" tabStyle="Account">
+    <apex:messages />
+    <apex:sectionHeader title="Account" subtitle="All Records"/>
+      <apex:form >
+        <apex:pageBlock title="Filtering Account Records">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!search}" rerender="AccountDisplay" value="Search"/>
+            </apex:pageBlockButtons>
+             <apex:pageBlockSection title="Filter Your Search">
+                <apex:inputText id="BillingCity" label="Billing City" value="{! selectedBillingCity}" />
+                <apex:inputText id="BillingState" label="Billing State" value="{! selectedBillingState}" />
+                <apex:inputText id="BillingCountry" label="Billing Country" value="{! selectedBillingCountry}" />
+            </apex:pageBlockSection>
+         </apex:pageBlock>
+        </apex:form>
+       <apex:form >
+    <apex:pageBlock id="AccountDisplay" title="Search Output">
+           
+        <apex:pageBlockTable value="{!Accounts}" var="account">
+            <apex:column value="{!account.Name}"/>
+            <apex:column value="{!account.Type}"/>
+            <apex:column value="{!account.BillingCity}"/>
+            <apex:column value="{!account.BillingState}"/>
+            <apex:column value="{!account.BillingCountry}"/>
+        </apex:pageBlockTable>
+        
+         <apex:panelGrid columns="7">
+                 <apex:commandButton status="fetchStatus" reRender="AccountDisplay" value="|<" action="{!setCon.first}" disabled="{!!setCon.hasPrevious}" title="First Page"/>
+                 <apex:commandButton status="fetchStatus" reRender="AccountDisplay" value="<" action="{!setCon.previous}" disabled="{!!setCon.hasPrevious}" title="Previous Page"/>
+                 <apex:commandButton status="fetchStatus" reRender="AccountDisplay" value=">" action="{!setCon.next}" disabled="{!!setCon.hasNext}" title="Next Page"/>
+                 <apex:commandButton status="fetchStatus" reRender="AccountDisplay" value=">|" action="{!setCon.last}" disabled="{!!setCon.hasNext}" title="Last Page"/>
+                 <apex:outputText >{!(setCon.pageNumber * size)+1-size}-{!IF((setCon.pageNumber * size)>noOfRecords, noOfRecords,(setCon.pageNumber * size))} of {!noOfRecords}</apex:outputText>
+          </apex:panelGrid> 
+                    
+    </apex:pageBlock>
+    </apex:form> 
+</apex:page>

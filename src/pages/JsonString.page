@@ -1,0 +1,9 @@
+<apex:page controller="JsonStringController">
+    <apex:sectionHeader title="Json String"/>
+        <apex:pageBlock title="Json String">
+            <apex:pageBlockSection columns="1" title="Output Json String">
+                {!jsonString}
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+
+</apex:page>

@@ -1,0 +1,49 @@
+<apex:page controller="MyAccountController" tabStyle="Account">
+<apex:messages />
+<apex:sectionHeader title="Account" subtitle="All Records"/>
+<apex:form >
+    <apex:pageBlock title="Filtering Account Records" >
+        <apex:pageBlocksection title="Filter Accounts" columns="2">
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="BillingCity" /> <apex:inputText id="BillingCity" value="{! selectedBillingCity}"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                BillingState &nbsp; <apex:inputText id="BillingState" value="{! selectedBillingState}" />
+            </apex:pageBlockSectionItem>
+            
+            <apex:pageBlockSectionItem >
+                BillingCountry &nbsp; <apex:inputText id="BillingCountry" value="{! selectedBillingCountry}" />
+            </apex:pageBlockSectionItem>
+            
+            
+        </apex:pageBlocksection>
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!Search}" rerender="AccountDetail" value="Search"/>
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+  </apex:form>
+  
+  <apex:outputPanel id="AccountDetail">
+  <apex:pageBlock title="Search Result" >
+        <apex:pageBlockTable value="{!accountList}" var="account">
+            <apex:column style="width:250px;">
+                <apex:facet name="header">Account Name</apex:facet>
+                <apex:outputText value="{!account.Name}" />
+            </apex:column>
+            <apex:column style="width:150px;" >
+                <apex:facet name="header">Billing City</apex:facet>
+                <apex:outputText value="{!account.BillingCity}" />
+            </apex:column>
+            <apex:column style="width:150px;">
+                <apex:facet name="header">Billing State</apex:facet>
+                <apex:outputText value="{!account.BillingState}" />
+            </apex:column>
+            <apex:column style="width:150px;">
+                <apex:facet name="header">Billing Country</apex:facet>
+                <apex:outputText value="{!account.BillingCountry}" />
+            </apex:column>
+        </apex:pageBlockTable>
+      </apex:pageBlock>
+    </apex:outputPanel>
+    
+</apex:page>
