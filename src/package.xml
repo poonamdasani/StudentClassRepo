@@ -8,13 +8,30 @@
         <members>Account</members>
         <members>Contact</members>
         <members>Opportunity</members>
+        <members>PurchaseOrder__c</members>
+        <members>PurchaseOrderLineItem__c</members>
+        <members>Product__c</members>
         <name>CustomObject</name>
     </types>
     <types>
         <members>Class__c</members>
         <members>Student__c</members>
         <members>Teach__c</members>
+        <members>PurchaseOrder__c</members>
+        <members>Product__c</members>
         <name>CustomTab</name>
+    </types>
+    <types>
+        <members>ProductSelector</members>
+        <members>PurchaseOrder</members>
+        <members>PurchaseOrderController</members>
+        <members>PurchaseOrderLineItem</members>
+        <members>PurchaseOrderService</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Purchase_Order</members>
+        <name>ApexPage</name>
     </types>
     <version>38.0</version>
 </Package>
