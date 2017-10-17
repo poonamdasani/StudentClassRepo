@@ -1,0 +1,35 @@
+<apex:component controller="AccountsController">
+    <apex:componentBody />
+   
+    <apex:form >
+    <apex:outputText value="Enter Query:"/>
+        <apex:pageBlock id="resultBlock">
+            <apex:inputTextarea value="{!SOQLquery}" cols="80" rows="5"/>
+                <apex:panelGrid columns="7">
+                    <apex:commandButton value="Execute" action="{!execute}"/>
+                    <apex:commandButton value="First" action="{!con.first}" reRender="resultBlock" disabled="{!!con.hasPrevious}" status="fetchStatus"/>
+                    <apex:commandButton value="Previous" action="{!con.previous}" reRender="resultBlock" disabled="{!!con.hasPrevious}" status="fetchStatus"/>
+                    <apex:commandButton value="Next" action="{!con.next}" reRender="resultBlock" disabled="{!!con.hasNext}" status="fetchStatus"/>
+                    <apex:commandButton value="Last" action="{!con.last}" reRender="resultBlock" disabled="{!!con.hasNext}" status="fetchStatus"/>
+                    <apex:commandButton status="fetchStatus" reRender="resultBlock" value="Refresh" action="{!refresh}" title="Refresh Page"/>
+                    <apex:outputText >{!(pageNumber * size)+1-size}-{!IF((pageNumber * size)>noOfRecords, noOfRecords,(pageNumber * size))} of {!noOfRecords}</apex:outputText>
+                    <apex:outputPanel style="color:#4AA02C;font-weight:bold">
+                        <apex:actionStatus id="fetchStatus" startText="Fetching..." stopText=""/>
+                    </apex:outputPanel>
+                </apex:panelGrid>
+         
+                    <apex:pageBlockTable value="{!recordList}" var="rec">
+                        <apex:repeat value="{!fieldsList}" var="field">
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:commandLink value="{!field}" action="{!sort}"> 
+                                        <apex:param name="column" value="{!field}" assignTo="{!column}"/>
+                                    </apex:commandLink>
+                                </apex:facet>
+                                <apex:outputText value="{!rec[field]}"/>
+                            </apex:column>
+                        </apex:repeat>
+                    </apex:pageBlockTable>  
+        </apex:pageBlock>
+    </apex:form>
+</apex:component>
