@@ -1,0 +1,63 @@
+<apex:page standardController="Student__c" recordSetVar="Students" title="Delete Students">
+   
+    <apex:includescript value="/soap/ajax/38.0/connection.js"></apex:includescript>
+    <apex:includescript value="/soap/ajax/38.0/apex.js"></apex:includescript> 
+    <apex:form >
+        <apex:pageBlock title="Selected Students" >
+            <apex:pageBlockSection id="StudentDetailSection"></apex:pageBlockSection>    
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandButton onclick="deleteContinue()" value="Continue"/>
+                <apex:commandButton onclick="deleteCancel() " value="Cancel"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form> 
+    <script>
+    sforce.connection.sessionId='{!GETSESSIONID()}';
+    var urlParam = window.location.search.substring(1).split('=');
+    var selectedStudentList=decodeURIComponent(urlParam[1]).split(',');
+    var records;
+    if( selectedStudentList[0] != '') {
+        for (var i = 0; i < selectedStudentList.length; i++) {
+            selectedStudentList[i]="'"+selectedStudentList[i]+"'"; 
+        }
+        var query = "SELECT Id ,Name, Last_Name__c, Class__r.Name from Student__c where Id IN (" + selectedStudentList + ")";
+        result = sforce.connection.query(query);                                
+        records = result.getArray("records");
+        var htmlString="<table><tr><th>First Name</th><th>Last Name</th><th>Class</th></tr>";
+        for(var i=0;i<records.length;i++)
+        {    
+            var studentObj=records[i];            
+            htmlString=htmlString+"<tr><td>"+studentObj.Name+"</td><td>"+studentObj.Last_Name__c+"</td><td>"+studentObj.Class__r.Name+"</td></tr>";
+        }
+        document.getElementById('j_id0:j_id3:j_id4:StudentDetailSection').innerHTML=htmlString+"</table>";
+    }else{
+        var htmlString="<div><h2>No Records Selected</h2></div>";
+        document.getElementById('j_id0:j_id3:j_id4:StudentDetailSection').innerHTML=htmlString;
+    }   
+    
+    function deleteContinue(){
+        if( selectedStudentList[0] != '') {
+            var selectedStudentIds=[];
+            for (var i = 0; i < records.length; i++) {
+                var stud=records[i];
+                selectedStudentIds[i]=stud.Id;
+            }
+            var studentDel = sforce.connection.deleteIds([selectedStudentIds]);
+            
+            if (studentDel[0].getBoolean("success")) {
+                alert("Selected Students Deleted!!!");
+            } else {
+                alert("Deletion Failed!!!");
+            }
+            window.parent.close();
+        }else{
+            alert("No Selected Students For Deletion!!");
+            window.parent.close();
+        }
+    }
+    
+    function deleteCancel(){
+        window.parent.close();
+    }    
+    </script>
+</apex:page>

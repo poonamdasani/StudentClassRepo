@@ -1,0 +1,29 @@
+<apex:page standardController="Student__c">
+    <apex:includescript value="/soap/ajax/38.0/connection.js"></apex:includescript>
+    <apex:includescript value="/soap/ajax/38.0/apex.js"></apex:includescript> 
+    <apex:form >
+    <apex:pageBlock title="New Class">
+        <apex:pageBlockSection >
+            <apex:inputText id="ClassName" />
+        </apex:pageBlockSection>
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Save" onclick="saveClass(); window.location='https://ap5.salesforce.com/a0A/o'; return false;"/>
+            </apex:pageBlockButtons>
+    </apex:pageBlock>
+    </apex:form>
+     <script>
+        function saveClass(){
+            sforce.connection.sessionId='{!GETSESSIONID()}';
+            //create new class
+            var classObj = new sforce.SObject("Class__c");
+            classObj.Name = document.getElementById('j_id0:j_id3:j_id4:j_id5:ClassName').value;
+            var result = sforce.connection.create([classObj]);
+            if (result[0].getBoolean("success")) {
+              alert("Class Creation Successfull!!!");
+            } else {
+              alert("Creation Failed: " + result[0]);
+            }
+        }
+
+    </script>
+</apex:page>

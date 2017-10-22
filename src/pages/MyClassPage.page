@@ -1,0 +1,49 @@
+<apex:page controller="MyClassController" tabStyle="Class__c">
+    <apex:sectionHeader title="Class" subtitle="All Record"/>
+    <apex:messages />
+    <apex:form >
+        <apex:pageBlock title="Classes" >
+            <apex:pageBlockSection id="AllClassRecord" title="Class Details" columns="1">
+                <apex:pageBlockTable value="{!classList}" var="class" >
+                    
+                    <apex:column style="width:250px;">
+                        <apex:facet name="header">Class Name</apex:facet>
+                        <apex:outputText value="{!class.Name}" />
+                    </apex:column>
+                    <apex:column style="width:150px;" >
+                        <apex:facet name="header">Total Student </apex:facet>
+                        <apex:outputText value="{!class.Number_of_Students__c}" />
+                    </apex:column>
+                    <apex:column style="width:150px;">
+                        <apex:facet name="header">Class Teacher</apex:facet>
+                        <apex:outputText value="{!class.Class_Teacher__c}" />
+                    </apex:column>
+                    <apex:column style="width:100px;">
+                        
+                        <apex:commandLink value="Edit" action="{!editClass}"><apex:param name="classId" value="{!class.Id}" assignTo="{!classId}"/></apex:commandLink>
+                        
+                    </apex:column>
+                    <apex:column style="width:100px;">
+                        <apex:commandLink value="Delete" action="{!deleteClass}"><apex:param name="classId" value="{!class.Id}" assignTo="{!classId}"/></apex:commandLink>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock id="editBlock" rendered="{!isRender}" title="Edit Record">
+            <apex:pageBlockSection title="Edit Section" columns="1">
+                <apex:inputField value="{!myClass.Name}" label="Name"/>
+                <apex:inputField value="{!myClass.Board__c}" label="Board"/>
+                <apex:inputField value="{!myClass.Class_Teacher__c}" label="Class Teacher"/>
+                <apex:inputField value="{!myClass.Detailed_Description__c}" label="Detailed Description"/>
+                <apex:inputField value="{!myClass.Fee__c}" label="Fee"/>
+                <apex:inputField value="{!myClass.Max_Size__c}" label="Max Size"/>
+                <apex:inputField value="{!myClass.My_Count__c}" label="My Count"/>
+                <apex:inputField value="{!myClass.Number_of_Students__c}" label="Number Of Students"/>
+                
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="save" action="{!saveClass}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
