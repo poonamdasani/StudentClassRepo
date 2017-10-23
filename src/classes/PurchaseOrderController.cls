@@ -18,7 +18,7 @@ public with sharing class PurchaseOrderController
     
     public PageReference cancel()
     {
-        return new PageReference('/a0F/o');
+        return redirectToList();
     }
     
     public void addItem()
@@ -79,4 +79,12 @@ public with sharing class PurchaseOrderController
         purchaseOrderPage.setRedirect(true);
         return purchaseOrderPage;
     }
+    
+    public PageReference redirectToList() 
+    { 
+		Schema.DescribeSObjectResult result = PurchaseOrder.SObjectType.getDescribe(); 
+		PageReference pageRef = new PageReference('/' + result.getKeyPrefix()); 
+		pageRef.setRedirect(true); 
+		return pageRef; 
+	}
 }
