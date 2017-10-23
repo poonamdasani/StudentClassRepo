@@ -1,12 +1,15 @@
-public class Contacts extends fflib_SObjectDomain {
+public class Contacts extends fflib_SObjectDomain 
+{
     
     public Contacts(List<Contact> sObjectList)
     {
         super(sObjectList);
     }
     
-    public class Constructor implements fflib_SObjectDomain.IConstructable {
-        public fflib_SObjectDomain construct(List<SObject> sObjectList) {
+    public class Constructor implements fflib_SObjectDomain.IConstructable 
+    {
+        public fflib_SObjectDomain construct(List<SObject> sObjectList) 
+        {
             return new Contacts(sObjectList);
         }
     }
@@ -21,7 +24,8 @@ public class Contacts extends fflib_SObjectDomain {
         checkSubject();
     }
     
-    private void checkSubject(){
+    private void checkSubject()
+    {
         for(Contact contact: (List<Contact>)Records)
         {
             if(contact.Subjects__c.contains('Hindi'))
