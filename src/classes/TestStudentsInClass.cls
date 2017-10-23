@@ -1,13 +1,13 @@
 @isTest
-public class TestStudentsInClass {
+public class TestStudentsInClass 
+{
     
     @isTest
-    static void testGetStudentList(){
-        // insert dummy class record
+    static void testGetStudentList()
+    {
         Class__c c = new Class__c(Board__c = 'CBSE',Max_Size__c=40);
         insert c;
         
-        // insert dummy student record
         Student__c s = new Student__c(Name='Poonam',Last_Name__c='Dasani',Class__c=c.id);
         insert s;
         
@@ -17,8 +17,6 @@ public class TestStudentsInClass {
         List<String> studentName = StudentsInClass.getStudentNames(c.id);
         System.assertEquals('Poonam Dasani', studentName.get(0) );
         
-        
         delete c;
-        
     }
 }
