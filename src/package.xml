@@ -13,8 +13,30 @@
     <types>
         <members>Class__c</members>
         <members>Student__c</members>
-        <members>Teach__c</members>
         <name>CustomTab</name>
+    </types>
+    <types>
+        <members>OpportunityTrigger</members>
+        <members>ContactTrigger</members>
+        <members>StudentTrigger</members>
+        <members>ClassTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Accounts</members>
+        <members>AccountsSelector</members>
+        <members>AccountsService</members>
+        <members>AccountsTrigger</members>
+        <members>Classes</members>
+        <members>ClassSelecter</members>
+        <members>Contacts</members>
+        <members>ContactsSelector</members>
+        <members>Opportunities</members>
+        <members>OpportunitiesSelector</members>
+        <members>OpportunityLineItemsSelector</members>
+        <members>Students</members>
+        <members>StudentsSelecter</members>
+        <name>ApexClass</name>
     </types>
     <version>38.0</version>
 </Package>
