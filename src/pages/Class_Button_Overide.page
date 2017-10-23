@@ -1,0 +1,24 @@
+<apex:page standardController="Class__c" tabStyle="Class__c">
+
+    <apex:sectionHeader title="Class" />
+    
+    <apex:pageMessages />
+    <apex:form >
+        <apex:pageblock title="Class Button Overriden"  mode="edit" >          
+            <apex:pageblocksection >
+                <apex:inputfield value="{!Class__c.Name}"/>
+                <apex:outputText value="" /> 
+                <apex:inputfield value="{!Class__c.Board__c}"/>
+                <apex:inputfield value="{!Class__c.Max_Size__c}"/>
+                <apex:inputfield value="{!Class__c.Class_Teacher__c}"/>
+                <apex:inputfield value="{!Class__c.Fee__c}"/> 
+                <apex:inputfield value="{!Class__c.My_Count__c}"/> 
+                <apex:inputfield value="{!Class__c.Detailed_Description__c}"/>             
+            </apex:pageblocksection>
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!save}"/>
+                <apex:commandbutton value="Cancel" action="{!cancel}"/>
+            </apex:pageblockbuttons>
+        </apex:pageblock>
+   </apex:form>
+</apex:page>

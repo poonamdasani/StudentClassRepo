@@ -16,5 +16,9 @@
         <members>Teach__c</members>
         <name>CustomTab</name>
     </types>
+    <types>
+        <members>ClassSelecter</members>
+        <name>ApexClass</name>
+    </types>
     <version>38.0</version>
 </Package>

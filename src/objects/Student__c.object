@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>Student_Button_Overide</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>Student_Button_Overide</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>YEAR(Today()) - YEAR( DOB__c )</formula>
+        <label>Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Class__c</fullName>
+        <externalId>false</externalId>
+        <label>Class</label>
+        <referenceTo>Class__c</referenceTo>
+        <relationshipLabel>Students</relationshipLabel>
+        <relationshipName>Students</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>DOB__c</fullName>
+        <externalId>false</externalId>
+        <label>DOB</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Generate_PDF__c</fullName>
+        <description>Generate PDF which contain detail of student.</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;https://ap1.salesforce.com/apex/PdfGenerator?Id=&quot;+Id, &apos;Generate PDF&apos; , &quot;_blank&quot;)</formula>
+        <label>Generate PDF</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Name</label>
+        <length>22</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Married__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Married</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sex__c</fullName>
+        <externalId>false</externalId>
+        <label>Sex</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Male</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Female</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Wife_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Wife Name</label>
+        <length>88</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Student</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Male_Students</fullName>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Sex__c</field>
+            <operation>equals</operation>
+            <value>Male</value>
+        </filters>
+        <label>Male Students</label>
+    </listViews>
+    <nameField>
+        <label>First Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Students</pluralLabel>
+    <searchLayouts>
+        <listViewButtons>Delete_Students</listViewButtons>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>DOB_Validation_Rule</fullName>
+        <active>true</active>
+        <errorConditionFormula>DOB__c &gt; Today()</errorConditionFormula>
+        <errorMessage>Date of birth should be less that today</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Delete_Students</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Delete Students</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/38.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/38.0/apex.js&quot;)}
+var records = {!GETRECORDIDS($ObjectType.Student__c)};
+window.open(&apos;/apex/DeleteStudents?id=&apos;+records);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Edit_Name</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Edit Name</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/38.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/38.0/apex.js&quot;)} 
+queryResult = sforce.connection.query(&quot;Select ID, Name From Student__c where id=&apos;{!Student__c.Id}&apos;&quot;); 
+var records = queryResult.getArray(&quot;records&quot;); 
+window.open(&apos;/apex/EditStudentName?id=&apos; + records[0].Id, &quot;&quot;, &quot;width=700,height=150&quot;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Hello_World</fullName>
+        <availability>online</availability>
+        <description>it Shows hello world as alert</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Hello World</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>alert(&quot;Hello World&quot;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Class</fullName>
+        <availability>online</availability>
+        <description>When click on new Button of any Student go New Class page.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New Class</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/38.0/connection.js&quot;)}
+{!RequireScript(&quot;/soap/ajax/38.0/apex.js&quot;)}
+queryResult= sforce.connection.query(&quot;select Id,Name from Student__c where id = &apos;{!Student__c.Id}&apos;&quot;);
+var records = queryResult.getArray(&quot;records&quot;);
+window.open(&apos;/apex/NewClass?id=&apos;+records[0].Id);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>popup</fullName>
+        <availability>online</availability>
+        <description>Open a new popup window and show his name and Class in a table</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>popup</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/38.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/24.0/apex.js&quot;)} 
+queryResult = sforce.connection.query(&quot;Select ID, Name, Class__r.Name From Student__c where id=&apos;{!Student__c.Id}&apos;&quot;);
+var records = queryResult.getArray(&quot;records&quot;);
+window.open(&apos;/apex/popUpStudent?id=&apos; + records[0].Id, &quot;&quot;, &quot;width=700,height=150&quot;);</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,21 @@
+<apex:page controller="OpportunityBillToContactController" tabStyle="Opportunity" >
+<apex:sectionHeader title="Opportunity" subtitle="Contact"/>
+    <apex:pageBlock title="List of Contact" >
+        <apex:form >
+            <apex:pageBlockSection title="Choose a Contact" columns="1" >
+                <apex:selectRadio value="{!selectedValue}">
+                    <apex:selectoptions value="{!contactList}"  ></apex:selectoptions>
+                </apex:selectRadio>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection >
+                <apex:panelGrid columns="3">
+                     <apex:commandButton value="Save" action="{!save}" title="Save"/>
+                     <apex:commandButton value="Clear" action="{!clear}" title="Clear"/>
+                     <apex:commandButton value="Cancel" action="{!cancel}" title="Cancel"/>
+                </apex:panelGrid>
+            </apex:pageBlockSection>    
+            
+        </apex:form>
+    </apex:pageBlock>
+    
+</apex:page>
