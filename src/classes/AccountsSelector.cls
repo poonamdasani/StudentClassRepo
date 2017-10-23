@@ -1,13 +1,17 @@
-public class AccountsSelector extends fflib_SObjectSelector {
+public class AccountsSelector extends fflib_SObjectSelector 
+{
     
     List<String> selectFields = new List<String>{'Name', 'BillingCity', 'BillingState', 'BillingCountry'};
 
-    public List<Schema.SObjectField> getSObjectFieldList() {
-        return new List<Schema.SObjectField> {
+    public List<Schema.SObjectField> getSObjectFieldList() 
+    {
+        return new List<Schema.SObjectField> 
+        {
             Account.Name,
             Account.Description,
             Account.AnnualRevenue,
-            Account.Id};
+            Account.Id
+         };
     }
 
     public AccountsSelector()
@@ -21,11 +25,13 @@ public class AccountsSelector extends fflib_SObjectSelector {
 	}
     
     
-    public Schema.SObjectType getSObjectType() {
+    public Schema.SObjectType getSObjectType() 
+    {
         return Account.sObjectType;
     }
 
-    public List<Account> selectById(Set<ID> idSet) {
+    public List<Account> selectById(Set<ID> idSet) 
+    {
         return (List<Account>) selectSObjectsById(idSet);
     }
     
@@ -35,10 +41,9 @@ public class AccountsSelector extends fflib_SObjectSelector {
         return (List<Account>) Database.query(queryString);
     }
     
-    public List<Account> selectByAccountWithFilters(String selectedBillingCity, String selectedBillingState, String selectedBillingCountry)
+    public List<Account> selectByAccountWithFilters100Records(String selectedBillingCity, String selectedBillingState, String selectedBillingCountry)
     {
         String queryString = createQuery(selectedBillingCity,selectedBillingState,selectedBillingCountry);
-        // set the limit in query
         queryString = queryString + ' Limit 100';
         return (List<Account>) Database.query(queryString);
     }
@@ -47,14 +52,14 @@ public class AccountsSelector extends fflib_SObjectSelector {
     {
         boolean flag = false;
         String queryString = String.format('SELECT {0} FROM {1}' ,new List<String>{string.join(selectFields, ','), getSObjectName()} );
-        if(selectedBillingCity != ''){
+        if(selectedBillingCity != null && selectedBillingCity != ''){
             String city = '%' + selectedBillingCity + '%';
             // append the where clause in query
             queryString = queryString + ' where BillingCity like :city '  ;
             flag = true;
         }
         
-        if(selectedBillingState != '' ){
+        if(selectedBillingState != null && selectedBillingState != '' ){
             String state = '%' + selectedBillingState + '%';
             if(flag){
                 // append the another condition using and clause in query
@@ -68,7 +73,7 @@ public class AccountsSelector extends fflib_SObjectSelector {
             
         }
         
-        if(selectedBillingCountry != ''){
+        if(selectedBillingCountry != null && selectedBillingCountry != ''){
             String country = '%' + selectedBillingCountry + '%';
             if(flag){
                 // append the another condition using and clause in query

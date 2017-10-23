@@ -1,13 +1,13 @@
-public class AccountsService {
+public class AccountsService 
+{
     
-    // Unit of Work
     private static fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork(
         new List<SObjectType> { Account.SObjectType  }
     );
     
     public static List<Account> get100AccountRecords(String selectedBillingCity, String selectedBillingState, String selectedBillingCountry)
     {
-        List<Account> accountsList = new AccountsSelector(true).selectByAccountWithFilters(selectedBillingCity, selectedBillingState, selectedBillingCountry);
+        List<Account> accountsList = new AccountsSelector(true).selectByAccountWithFilters100Records(selectedBillingCity, selectedBillingState, selectedBillingCountry);
         return accountsList;
     }
     
@@ -21,17 +21,16 @@ public class AccountsService {
     {
         
          List<Account> accountsList = new List <Account>();
-        List<Contact> contactList = new ContactsSelector(true).selectById(new Set<Id> {mycontactid});
-         //system.debug('account id = '+ contactList);
+        	 List<Contact> contactList = new ContactsSelector(true).selectById(new Set<Id> {mycontactid});
          if(contactList.size()==0)
          {
              return ;
          }
          if(contactList[0].Account.ContactIDs__c == null)
          {
-        	contactList = new ContactsSelector(true).selectByAccountId(new Set<Id> {contactList[0].Account.Id});
+        		contactList = new ContactsSelector(true).selectByAccountId(new Set<Id> {contactList[0].Account.Id});
          	Account acc = contactList[0].Account;
-             acc.ContactIDs__c = '';
+            acc.ContactIDs__c = '';
             for(Contact contact : contactList)
             {
                 acc.ContactIDs__c += contact.ID + ',';
@@ -39,7 +38,8 @@ public class AccountsService {
              acc.ContactIDs__c = acc.ContactIDs__c.subString(0,acc.ContactIDs__c.length() - 1);
          	uow.registerDirty(acc);
          }
-        else {
+         else 
+         {
             Account acc = contactList[0].Account;
             if(!acc.ContactIDs__c.contains(contactList[0].ID))
             {

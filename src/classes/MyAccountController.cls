@@ -1,4 +1,5 @@
-public class MyAccountController {
+public class MyAccountController 
+{
     public String selectedBillingCity { get; set; }
     public String selectedBillingState { get; set; }
     public String selectedBillingCountry { get; set; }
@@ -9,7 +10,7 @@ public class MyAccountController {
         search();
     }
     
-    public void Search() 
+    public void search() 
     {
         accountList = AccountsService.get100AccountRecords(selectedBillingCity,selectedBillingState,selectedBillingCountry);
     }

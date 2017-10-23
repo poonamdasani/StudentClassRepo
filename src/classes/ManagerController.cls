@@ -1,20 +1,20 @@
 //Class to update Manager__c field. Manager__c field is a lookup of Account.
 	
-public class ManagerController {
-    public void populateManager(Opportunity o)
+public class ManagerController 
+{
+    public void populateManager(Opportunity opp)
     { 
-              if(o.BillToContact__c != NULL)
+              if(opp.BillToContact__c != NULL && opp.Manager__c == NULL)
                 {
-                   if(o.Manager__c == NULL)
-                   {
-                       try{
-                           o.Manager__c= o.AccountId;
-                          update o;
+                       try
+                       {
+                          opp.Manager__c= opp.AccountId;
+                          update opp;
                        }
-                       catch(Exception e){
+                       catch(Exception e)
+                       {
                            system.debug('exception occured : '+ e.getMessage());
                        }
-                   }
                 }
         }
     }

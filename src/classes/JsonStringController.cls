@@ -1,14 +1,15 @@
-public with sharing class JsonStringController {
+public with sharing class JsonStringController 
+{
      public String jsonString {get;set;}
     
-     public JsonStringController (){
-         // call the prepareString() method
+     public JsonStringController ()
+     {
          jsonString = prepareString();
      }
-     public String prepareString(){
-         // get the List of Contact
+     
+     public String prepareString()
+     {
          List<Contact> contactList = ContactsService.getContactsList();
-         // create json String and return
          return JSON.serializePretty(contactList);
          
      }   

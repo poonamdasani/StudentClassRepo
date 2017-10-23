@@ -1,13 +1,11 @@
-public class ManageContacts {
-//public static List<Contact> contactid;
+public class ManageContacts 
+{
     public static void updateContactids(id mycontactid)
     {
-         List<Account> contactids= new List <Account>();
-         Contact accountid= [select Account.id from Contact where id =:mycontactid];
-         //system.debug('account id = '+accountid);
-         list<Account> accObj= [select ContactIDs__c,(select id from contacts) from Account where id= : accountid.Account.id];
-        //if ContactIDs__c 's content is null
-       for(Account acc : accObj)
+        List<Account> contactids= new List <Account>();
+        Contact accountid= [select Account.id from Contact where id =:mycontactid];
+        list<Account> accObj= [select ContactIDs__c,(select id from contacts) from Account where id= : accountid.Account.id];
+       	for(Account acc : accObj)
         {
             for(Contact con : acc.contacts)
             {

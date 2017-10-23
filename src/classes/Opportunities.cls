@@ -1,12 +1,15 @@
-public class Opportunities extends fflib_SObjectDomain {
+public class Opportunities extends fflib_SObjectDomain 
+{
     
     public Opportunities(List<Opportunity> sObjectList)
     {
         super(sObjectList);
     }
     
-    public class Constructor implements fflib_SObjectDomain.IConstructable {
-        public fflib_SObjectDomain construct(List<SObject> sObjectList) {
+    public class Constructor implements fflib_SObjectDomain.IConstructable 
+    {
+        public fflib_SObjectDomain construct(List<SObject> sObjectList) 
+        {
             return new Opportunities(sObjectList);
         }
     }
@@ -38,7 +41,8 @@ public class Opportunities extends fflib_SObjectDomain {
         }
         List<Contact> contactList=(new ContactsSelector(true).selectByAccountId(idSet));
         List<SelectOption> contactSelected = new List<SelectOption>();
-        for(Contact c :contactList){
+        for(Contact c :contactList)
+        {
             contactSelected.add(new SelectOption(c.id,c.name));
         }
         return contactSelected;
@@ -67,7 +71,8 @@ public class Opportunities extends fflib_SObjectDomain {
         {
           opportunityId.add(opportunities.StageName);
         }
-        if(oldOpportunityMap != null){
+        if(oldOpportunityMap != null)
+        {
             for(Opportunity opportunities: oldOpportunityMap.values())
             {
               opportunityId.add(opportunities.StageName);
@@ -79,8 +84,8 @@ public class Opportunities extends fflib_SObjectDomain {
         {
           if(oldOpportunityMap != null)
           {
-              //update call
-              if((oldOpportunityMap.get(opportunities.id).StageName != 'CLOSED WON' || oldOpportunityMap.get(opportunities.id).StageName != 'CLOSED LOST') && (opportunities.StageName == 'CLOSED WON' || opportunities.StageName == 'CLOSED LOST') ){
+              if((oldOpportunityMap.get(opportunities.id).StageName != 'CLOSED WON' || oldOpportunityMap.get(opportunities.id).StageName != 'CLOSED LOST') && (opportunities.StageName == 'CLOSED WON' || opportunities.StageName == 'CLOSED LOST') )
+              {
           		opportunityMap.get(oldOpportunityMap.get(opportunities.Id).StageName).CloseDate  = System.Today();
               }
           }
@@ -90,7 +95,8 @@ public class Opportunities extends fflib_SObjectDomain {
     private void checkBillStatus()
     {
         Set<id> oppIdSet = new Set<Id>();
-        for(Opportunity opp : (List<Opportunity>) Records){
+        for(Opportunity opp : (List<Opportunity>) Records)
+        {
             oppIdSet.add(opp.Id); 
         }
         Map<Id, Opportunity> oppMap = new Map<Id, Opportunity>(new OpportunitiesSelector(true).selectById(oppIdSet));

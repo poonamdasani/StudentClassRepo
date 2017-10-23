@@ -1,11 +1,14 @@
-public class Students extends fflib_SObjectDomain {
+public class Students extends fflib_SObjectDomain 
+{
     public Students(List<Student__c> sObjectList)
     {
         super(sObjectList);
     }
     
-    public class Constructor implements fflib_SObjectDomain.IConstructable {
-        public fflib_SObjectDomain construct(List<SObject> sObjectList) {
+    public class Constructor implements fflib_SObjectDomain.IConstructable 
+    {
+        public fflib_SObjectDomain construct(List<SObject> sObjectList) 
+        {
             return new Students(sObjectList);
         }
     }
@@ -43,18 +46,20 @@ public class Students extends fflib_SObjectDomain {
         {
             if(oldStudentMap != null)
             {
-                //update call
-                if(classMap.containsKey(oldStudentMap.get(student.Id).Class__c) && student.Class__c != oldStudentMap.get(student.Id).Class__c){
+                if(classMap.containsKey(oldStudentMap.get(student.Id).Class__c) && student.Class__c != oldStudentMap.get(student.Id).Class__c)
+                {
                     classMap.get(oldStudentMap.get(student.Id).Class__c).My_Count__c -= 1;
                 }
             }
-            if(classMap.containsKey(student.Class__c)){
+            if(classMap.containsKey(student.Class__c))
+            {
                 classMap.get(student.Class__c).My_Count__c += 1;
             }
         }
     }
     
-    private void checkMaxLimit(){
+    private void checkMaxLimit()
+    {
         Set<Id> classId = new Set<Id>();
         for(Student__c student: (List<Student__c>)Records)
         {

@@ -7,13 +7,11 @@
                 <apex:commandButton action="{!search}" rerender="AccountDisplay" value="Search"/>
             </apex:pageBlockButtons>
              <apex:pageBlockSection title="Filter Your Search">
-                <apex:inputText id="BillingCity" label="Billing City" value="{! selectedBillingCity}" />
-                <apex:inputText id="BillingState" label="Billing State" value="{! selectedBillingState}" />
-                <apex:inputText id="BillingCountry" label="Billing Country" value="{! selectedBillingCountry}" />
+                <apex:inputText id="BillingCity" label="Billing City" value="{!selectedBillingCity}" />
+                <apex:inputText id="BillingState" label="Billing State" value="{!selectedBillingState}" />
+                <apex:inputText id="BillingCountry" label="Billing Country" value="{!selectedBillingCountry}" />
             </apex:pageBlockSection>
          </apex:pageBlock>
-        </apex:form>
-       <apex:form >
     <apex:pageBlock id="AccountDisplay" title="Search Output">
            
         <apex:pageBlockTable value="{!Accounts}" var="account">

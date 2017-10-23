@@ -1,4 +1,4 @@
-<apex:page standardController="Class__c" tabStyle="Student__c">
+<apex:page standardController="Class__c" tabStyle="Class__c">
 
     <apex:sectionHeader title="Class" />
     

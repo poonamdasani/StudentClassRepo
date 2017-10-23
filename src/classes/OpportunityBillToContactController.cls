@@ -1,8 +1,10 @@
-public with sharing class OpportunityBillToContactController{
+public with sharing class OpportunityBillToContactController
+{
     public List<Opportunity> opp = new List<Opportunity>();
     public String selectedValue{get; set;}
     
-    public List<SelectOption> getContactList(){
+    public List<SelectOption> getContactList()
+    {
         String id = ApexPages.CurrentPage().getParameters().get('id');
         if(id == null)
         {
@@ -17,20 +19,25 @@ public with sharing class OpportunityBillToContactController{
         return contactSelected;
     }
     
-    public PageReference save(){
-        if(opp.size() > 0){
+    public PageReference save()
+    {
+        if(opp.size() > 0)
+        {
             opp.get(0).BillToContact__c = selectedValue;
             update opp;
         }
         return pageRedirect();
     }
     
-    public PageReference cancel(){
+    public PageReference cancel()
+    {
         return pageRedirect();
     }
     
-    public PageReference clear(){
-        if(opp.size() > 0){
+    public PageReference clear()
+    {
+        if(opp.size() > 0)
+        {
             opp.get(0).BillToContact__c = null;
             update opp;
             
@@ -42,11 +49,7 @@ public with sharing class OpportunityBillToContactController{
 
     public PageReference pageRedirect() 
     {
-        // Your code here
-    
         PageReference redirect = new PageReference('/'+opp.get(0).id); 
-    
-        // pass the selected asset ID to the new page
         redirect.getParameters().put('id',selectedAsset); 
         redirect.setRedirect(true); 
     
