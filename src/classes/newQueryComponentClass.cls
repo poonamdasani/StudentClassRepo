@@ -1,5 +1,5 @@
 /* Query Editor for Generic Object*/
-public class newQueryComponentClass
+public class NewQueryComponentClass
 {
 	Public String SOQLquery{get;set;}
 	Public Integer noOfRecords{get; set;}
@@ -96,7 +96,7 @@ public class newQueryComponentClass
         return null;
 	}
 	
-	public String getQueryString(String SOQLquery, String sortType)
+	private String getQueryString(String SOQLquery, String sortType)
 	{
 		String sortingQuery;
 		if(SOQLquery.contains('LIMIT'))
