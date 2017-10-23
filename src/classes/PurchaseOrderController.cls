@@ -26,52 +26,57 @@ public with sharing class PurchaseOrderController
         pid=ApexPages.currentPage().getParameters().get('selectproductId');
         Product__c p = PurchaseOrderService.getProduct(pid);
         Decimal quantity = Decimal.valueOf(ApexPages.currentPage().getParameters().get(p.Name));
-
-
         selectproductlist.add(PurchaseOrderService.addItems(quantity, p));
-        // remove product from list
         addProductList = PurchaseOrderService.removeItem(addProductList, pid);                                         
     }
     
-    public void removeItem(){ 
+    public void removeItem()
+    { 
         pid=ApexPages.currentPage().getParameters().get('selectedproductId');
         PurchaseOrderLineItem__c pi=new PurchaseOrderLineItem__c();
-
-        // add product to list
         Product__c p=(PurchaseOrderService.getProduct(pid)); 
         addproductlist.add(p);
-        // remove product from cart
         selectProductList = PurchaseOrderService.removeItem(selectProductList, pid);
     }
     
-    Public List<Product__c>  getaddproductlist(){
-        Return addproductlist; 
+    Public List<Product__c>  getAddProductList()
+    {
+        return addProductList; 
     }
     
-    Public List<PurchaseOrderService.SelectProduct>  getselectproductlist(){
-        Return selectproductlist; 
+    Public List<PurchaseOrderService.SelectProduct>  getSelectProductList()
+    {
+        return selectProductList; 
     }
     
-    public String getpid(){
+    public String getPId()
+    {
         return pid;
     } 
     
-    public boolean getisRender(){
+    public boolean getIsRender()
+    {
         return isRender;
     } 
     
-    public boolean getisViewProducts(){
+    public boolean getIsViewProducts()
+    {
         return (addproductlist!=null);
     } 
     
-    public PageReference purchase(){
-        try{
-        	PurchaseOrderService.purchase(selectProductList, purchaseOrder);
+    public PageReference purchase()
+    {
+        try
+        {
+        		PurchaseOrderService.purchase(selectProductList, purchaseOrder);
         }
-        catch(System.DMLException e){   
+        catch(System.DMLException e)
+        {   
             Apexpages.addMessages(e);
             return null;
         }
-        return new PageReference('/a0F/o');
+        PageReference purchaseOrderPage = new ApexPages.StandardController(purchaseOrder).view();
+        purchaseOrderPage.setRedirect(true);
+        return purchaseOrderPage;
     }
 }
