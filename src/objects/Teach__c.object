@@ -108,11 +108,6 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <label>Teach</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <nameField>
         <label>Teach Name</label>
         <type>Text</type>
