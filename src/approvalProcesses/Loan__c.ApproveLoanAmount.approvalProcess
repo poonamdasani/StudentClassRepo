@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>pdsadmin@gmail.com</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>Applicant_Email__c</field>
+        <field>Applicant_Name__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <description>Approve if If Amount greater then 15000</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Loan__c.Amount__c</field>
+                <operation>greaterThan</operation>
+                <value>15000</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
+        <label>ApproveLoan</label>
+        <name>ApproveLoan</name>
+    </approvalStep>
+    <description>Create an Approval Process on Loan,
+	&gt;&gt;  If Amount greater then 15000
+	&gt;&gt;  When submitted for approval then till approval/reject user cannot edit the record (System 	admin can edit).
+	 &gt;&gt;  Record must be approved/reject by Related Manager
+	 &gt;&gt;  Mail should be sent to Owner on Approving and Rejecting of the Loan
+	 &gt;&gt;  After Approving/Rejecting ,record should be editable</description>
+    <emailTemplate>unfiled$public/LoanRequest</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>Loan__c.Amount__c</field>
+            <operation>greaterThan</operation>
+            <value>15000</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>LoanAction</name>
+            <type>Alert</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>ApproveLoanAmount</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
+        <userHierarchyField>Manager</userHierarchyField>
+    </nextAutomatedApprover>
+    <recallActions>
+        <action>
+            <name>LoanAction</name>
+            <type>Alert</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

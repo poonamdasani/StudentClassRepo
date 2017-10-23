@@ -38,5 +38,23 @@
         <members>StudentsSelecter</members>
         <name>ApexClass</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>ApprovalProcess</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Workflow</name>
+    </types>
+    <types>
+        <members>unfiled$public</members>
+        <members>unfiled$public/AccountRevenue</members>
+        <members>unfiled$public/ApprovalAction</members>
+        <members>unfiled$public/LoanRequest</members>
+        <members>unfiled$public/StudentUpdateRecords</members>
+        <members>unfiled$public/TeacherExperence</members>
+        <members>unfiled$public/UpcomingBirthday</members>
+        <name>EmailTemplate</name>
+    </types>
     <version>38.0</version>
 </Package>
