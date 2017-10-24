@@ -1,0 +1,9 @@
+<apex:page controller="AccountsOppAmountController">
+    <apex:sectionHeader title="Account Summary Report"/>
+    <apex:pageBlock title="Accounts Opportunity Summary Report">
+        <apex:pageBlockTable value="{!list}" var="cobject">
+            <apex:column headerValue="Account" value="{! cobject.accountName}"/>
+            <apex:column headerValue="Opportunity Amount Total" value="{! cobject.amount}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>
