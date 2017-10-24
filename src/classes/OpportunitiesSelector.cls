@@ -31,7 +31,7 @@ public class OpportunitiesSelector extends fflib_SObjectSelector {
     
     public List<AggregateResult> selectAggregateAccountByName()
     {
-        String query = String.format('Select  {0} sum from {1} where Account.Name != \'\' Group By Account.Name limit 10', new List<String>{string.join(selectOpportunityFieldsWithAccount,','), getSObjectName()});
+        String query = String.format('Select  {0} sum from {1} where Account.Name != NULL Group By Account.Name limit 10', new List<String>{string.join(selectOpportunityFieldsWithAccount,','), getSObjectName()});
     	return (List<AggregateResult>) database.query(query);
     }
 }

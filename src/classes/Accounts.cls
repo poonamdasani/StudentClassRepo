@@ -49,7 +49,7 @@ public class Accounts extends fflib_SObjectDomain
         updateChildCount(accountIDs);
     }
     
-    public Override void onAfterDelete() 
+    public Override void onBeforeDelete() 
     {
         Set<ID> accountIDs = new Set<ID>();
         Map<Id, Account> newAccountMap = new Map<Id, Account>();
