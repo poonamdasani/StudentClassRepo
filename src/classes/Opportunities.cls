@@ -51,21 +51,14 @@ public class Opportunities extends fflib_SObjectDomain
     
     private void sendMailIfStatusChanged(Map<Id, Opportunity> oldOpportunityMap)
     {
-        Map<Id, Opportunity> newOpportunityMap = new Map<Id, Opportunity>();
-        for(Opportunity oppo: (List<Opportunity>)Records)
-        {
-            newOpportunityMap.put(oppo.Id, oppo);
-        }
-        
+        Map<Id, Opportunity> newOpportunityMap = new Map<Id, Opportunity>((List<Opportunity>)Records);
         List<Messaging.SingleEmailMessage> emailsToSend = new List<Messaging.SingleEmailMessage>();
         User user = [select email, firstName, lastName from User where id = :oldOpportunityMap.values().ownerId];
-        Contact tempContact = new Contact(email = user.email, firstName = user.firstName, lastName = user.lastName);
-        insert tempContact;
         
         for(Opportunity opp: oldOpportunityMap.values()){
             if(opp.Custom_Status__c != newOpportunityMap.get(opp.id).Custom_Status__c){
                 Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
-                email.setTargetObjectId(tempContact.id);
+                email.setTargetObjectId(user.id);
                 email.setTemplateId('00X900000015Uml');
                 email.saveAsActivity = false;
                 email.setWhatId(opp.Id);

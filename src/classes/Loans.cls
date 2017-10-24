@@ -19,11 +19,7 @@ public class Loans extends fflib_SObjectDomain {
     private void notifyUserForStatusChange(Map<Id, Loan__c> oldLoanObject)
     {
         List<Messaging.SingleEmailMessage> emailsToSend = new List<Messaging.SingleEmailMessage>();
-        Map<Id, Loan__c> newLoanMap = new Map<Id, Loan__c>();
-        for(Loan__c loan: (List<Loan__c>)Records)
-        {
-            newLoanMap.put(loan.Id, loan);
-        }
+        Map<Id, Loan__c> newLoanMap = new Map<Id, Loan__c>((List<Loan__c>)Records);
         
         for(Loan__c loan : oldLoanObject.values())
         {
