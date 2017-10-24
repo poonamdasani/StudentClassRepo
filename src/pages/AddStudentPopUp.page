@@ -1,0 +1,35 @@
+<apex:page standardController="Class__c">
+        <apex:includeScript value="/soap/ajax/38.0/connection.js"/>
+        <apex:includeScript value="/soap/ajax/38.0/apex.js"/>
+    <apex:form > 
+        <apex:pageBlock >
+            <apex:pageBlockSection title="Class : {!Class__c.Name}">
+                Student Name : <input id="name"/>
+            </apex:pageBlockSection>
+                <apex:pageBlockSection >
+                Student Last Name : <input id="lastName"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+            <apex:commandButton value="Add" onClick="addStudent()"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+    <script>
+        function addStudent(){
+            sforce.connection.sessionId = '{!getSessionID()}';
+            var newStudent = new sforce.SObject("Student__c");
+            newStudent.Name = document.getElementById('name').value;
+            newStudent.Last_Name__c = document.getElementById('lastName').value;
+            newStudent.Class__c = '{!Class__c}';
+            var result = sforce.connection.create([newStudent]);
+            if(result[0].getBoolean("success"))
+        {
+            alert('Student Added!!');           
+        }
+        else{
+            alert('Error : ' + result);
+        }
+        window.close();       
+    }
+    </script>
+</apex:page>

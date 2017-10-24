@@ -1,0 +1,19 @@
+<apex:page standardController="Student__c" showHeader="false" sidebar="false">
+    <apex:form >
+        <apex:pageBlock title="Edit Student Name">
+            <apex:pageBlockSection Title="Student New/Update">
+                <apex:inputField value="{!Student__c.Name}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}" oncomplete="javascript:CloseAndRefresh()" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <script language="JavaScript" type="text/javascript">
+        function CloseAndRefresh()
+        {
+            window.opener.location.href="/{!$CurrentPage.parameters.id}";
+            window.top.close();
+        }
+    </script>
+    </apex:form>
+</apex:page>
