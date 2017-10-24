@@ -7,7 +7,7 @@
             <apex:inputText id="ClassName" />
         </apex:pageBlockSection>
         <apex:pageBlockButtons >
-            <apex:commandButton value="Save" onclick="saveClass(); window.location='../'; return false;"/>
+            <apex:commandButton value="Save" onclick="saveClass(); return false;"/>
             </apex:pageBlockButtons>
     </apex:pageBlock>
     </apex:form>
@@ -23,6 +23,7 @@
             } else {
               alert("Creation Failed: " + result[0]);
             }
+            window.close();
         }
 
     </script>
