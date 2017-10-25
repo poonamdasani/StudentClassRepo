@@ -1,0 +1,26 @@
+<apex:page Controller="StudentNameController">
+    <apex:sectionHeader title="Details of Selected Student" subtitle="Student Details" />
+    <apex:messages />
+    <apex:form >
+        <apex:actionFunction action="{!setStudent}" name="show" reRender="studentDetail"/>
+        <apex:pageBlock >
+            <apex:pageBlockSection title="Students List" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Select a Student"> </apex:outputLabel>
+                    <apex:selectList id="studentNameList" value="{!StudentId}" size="1" required="true" onchange="show(this.value)">
+                        <apex:selectOptions value="{!StudentsName}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+           </apex:pageBlockSection>
+           <apex:pageBlockSection columns="2" title="Students Detail Page" id="studentDetail"> 
+                <apex:outputField title="Name" value="{!studentObj.Name}"/>
+                <apex:outputField value="{!studentObj.Email__c}"/>
+                <apex:outputField value="{!studentObj.Name}"/>
+                <apex:outputField value="{!studentObj.Last_Name__c}"/>
+                <apex:outputField value="{!studentObj.DOB__c}"/>
+                <apex:outputField value="{!studentObj.Age__c}"/>
+            </apex:pageBlockSection>
+            <apex:detail />
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
