@@ -4,9 +4,8 @@ private class PurchaseOrderControllerTest {
 	static PurchaseOrderController ctrl = new PurchaseOrderController(
             new ApexPages.StandardController(new PurchaseOrder__c()));
     
-    @isTest static void testCancel()
+    @isTest static void testCancel_CancelProcessAndReturn()
     {
-        
         PageReference ref = Page.Purchase_Order;
         ref.getParameters().put('retURL', '/');
         Test.setCurrentPage(ref);
@@ -15,17 +14,11 @@ private class PurchaseOrderControllerTest {
         Test.stopTest();
     }    
     
-    @isTest static void testAddItem() 
+    @isTest static void testAddItemToCart() 
     {
-        Product__c prodct = new Product__c();
-        prodct.Name = 'Test';
-        prodct.Price__c = 20;
-        prodct.Stock__c = 10;
-        insert prodct;
+        Product__c prodct = setProductValue();
        
-        PageReference ref = Page.Purchase_Order;
-        ref.getParameters().put('selectproductId', prodct.Id);
-        ref.getParameters().put(prodct.Name, String.valueOf(prodct.Stock__c));
+        PageReference ref = setPageRefrence(prodct);
         Test.setCurrentPage(ref);
         
         Test.startTest();
@@ -38,14 +31,9 @@ private class PurchaseOrderControllerTest {
     
     @isTest static void testRemoveItem()
     {
-        Product__c prodct = new Product__c();
-        prodct.Name = 'Test';
-        prodct.Price__c = 20;
-        prodct.Stock__c = 10;
-        insert prodct;
+        Product__c prodct = setProductValue();
         
-        PageReference ref = Page.Purchase_Order;
-        ref.getParameters().put('selectedproductId', prodct.Id);
+        PageReference ref = setPageRefrence(prodct);
         Test.setCurrentPage(ref);
         
         Test.startTest();
@@ -69,11 +57,7 @@ private class PurchaseOrderControllerTest {
         insert purchaseOrder;
         ctrl.purchaseOrder = purchaseOrder;
         
-        Product__c prodct = new Product__c();
-        prodct.Name = 'Test';
-        prodct.Price__c = 20;
-        prodct.Stock__c = 10;
-        insert prodct;
+        Product__c prodct = setProductValue();
         
         PurchaseOrderService.SelectProduct p = new PurchaseOrderService.SelectProduct();
         PurchaseOrderLineItem__c lineItem = new PurchaseOrderLineItem__c();
@@ -89,5 +73,24 @@ private class PurchaseOrderControllerTest {
         ctrl.purchase();
 		Test.stopTest(); 
         
+    }
+    
+    
+    private static Product__c setProductValue()
+    {
+    		Product__c prodct = new Product__c();
+        prodct.Name = 'Test';
+        prodct.Price__c = 20;
+        prodct.Stock__c = 10;
+        insert prodct;
+        return product;
+    }
+    
+    private static PageReference setPageRefrence(Product__c product)
+    {
+    		PageReference ref = Page.Purchase_Order;
+        ref.getParameters().put('selectproductId', prodct.Id);
+        ref.getParameters().put(prodct.Name, String.valueOf(prodct.Stock__c));
+        return ref;
     }
 }

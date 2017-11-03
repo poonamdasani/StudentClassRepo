@@ -1,20 +1,11 @@
 @isTest
 private class PurchaseOrderServiceTest 
 {
-    @isTest
-    static void selectProductClass()
-    {
-        PurchaseOrderService.SelectProduct s = new PurchaseOrderService.SelectProduct();
-    }
-    
-    
     
     @isTest
     static void addRemoveItems()
     {
-        Product__c prod = new Product__c();
-        prod.price__c = 123;
-        insert prod;
+        Product__c prod = setProduct();
         
         PurchaseOrderService.SelectProduct sp = PurchaseOrderService.addItems(1, prod);
         System.assertEquals(sp.price, prod.price__c);
@@ -37,18 +28,35 @@ private class PurchaseOrderServiceTest
     @isTest
     static void purchase()
     {
-        Product__c prod = new Product__c();
-        prod.price__c = 123;
-        insert prod;
+        Product__c prod = setProduct();
         
         PurchaseOrderService.SelectProduct sp = PurchaseOrderService.addItems(1, prod);
         System.assertEquals(sp.price, prod.price__c);
         
         List<PurchaseOrderService.SelectProduct> spList = new List<PurchaseOrderService.SelectProduct>();
-        spList.add(sp);
+        spList.add(sp);  
         
+        Contact c = new Contact();
+        c.LastName = 'test1';
+        insert c;
+        Date d = Date.today();
+        PurchaseOrder__c purchaseOrder = new PurchaseOrder__c();
+        purchaseOrder.Contact__c = c.Id;
+        purchaseOrder.Purchase_Date__c = d;
+        purchaseOrder.Total_Amount__c = 30;
+        insert purchaseOrder;
         
+        PurchaseOrderService.purchase(spList, purchaseOrder);
         
-        
+        List<PurchaseOrderLineItem__c> purchaseOrderLineItemList = new List<PurchaseOrderLineItem>();
+        purchaseOrderLineItemList = [SELECT Product FROM PurchaseOrderLineItem__c];
+        System.assertEquals(purchaseOrderLineItemList.get(0).purchaseOrder.Id,  purchaseOrder.Id);
+    }
+    
+    private static Product__c setProduct()
+    {
+    		Product__c prod = new Product__c();
+        prod.price__c = 123;
+        insert prod;
     }
 }
