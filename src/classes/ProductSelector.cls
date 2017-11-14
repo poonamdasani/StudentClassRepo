@@ -28,9 +28,14 @@ public class ProductSelector extends fflib_SObjectSelector
 
     public List<Product__c> selectByProductId(Set<ID> idSet) 
     {
-        String query = String.format(
-            'SELECT {0} FROM {1} WHERE Id IN :idSet', new List<String>{string.join(selectFields, ','), getSObjectName()});
-        return (List<Product__c>) database.query(query);
+    	
+    	List<Product__c> products = new List<Product__c>();
+		if(idSet != null && idSet.size() > 0) {
+        		String query = String.format(
+            		'SELECT {0} FROM {1} WHERE Id IN :idSet', new List<String>{string.join(selectFields, ','), getSObjectName()});
+        		return (List<Product__c>) database.query(query);
+		}
+		return products;
     }
 
 }
