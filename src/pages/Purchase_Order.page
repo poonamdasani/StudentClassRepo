@@ -1,0 +1,68 @@
+<apex:page standardController="PurchaseOrder__c" extensions="PurchaseOrderController" tabStyle="PurchaseOrder__c">
+    <apex:sectionHeader title="Purchase Order" subtitle="New"/>
+    <apex:pagemessages />
+    <apex:form > 
+        <apex:pageBlock id="orderdetail" title="Purchase Order Detail">
+            <apex:pageBlockSection columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Vendor"></apex:outputLabel> 
+                    <apex:inputField label="Vendor" value="{!purchaseOrder.Contact__c}"/> 
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="PurchaseDate"></apex:outputLabel>     
+                    <apex:inputField value="{!purchaseOrder.Purchase_Date__c}"/>   
+                      
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection> 
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!purchase}" value="Purchase" rerender="orderdetail" rendered="{!isrender}" />
+                <apex:commandButton id="cancelButton" value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    
+        <apex:pageBlock id="selectproductlist" title="Products in Cart">
+            <apex:pageblockSection columns="1" >
+                
+                <apex:pageBlocktable value="{!selectproductlist}" var="product" columns="4">
+                    <apex:column headerValue="Delete">                   
+                        <apex:commandButton value="Delete from Cart" action="{!removeItem}" reRender="selectproductlist,addproductlist">   
+                            <apex:param name="selectedProductId" value="{!product.selectedProduct.Product__c}" />                                                                                                                                                       
+                        </apex:commandbutton>
+                    </apex:column>
+                    <apex:column headerValue="Product Id" value="{!product.selectedProduct.Product__c}"/> 
+                    <apex:column headerValue="Quantity">
+                        <apex:outputField id="updatedQuantity" value="{!product.selectedProduct.Quantity__c}"  >
+                        <apex:inlineEditSupport event="ondblclick" showOnEdit="savebutton" hideOnEdit="testbutton"  />
+                    </apex:outputField></apex:column> 
+                    <apex:column headerValue="Price" value="{!product.price}"/> 
+                    
+                </apex:pageBlocktable>
+            </apex:pageblockSection>
+    
+            <apex:pageBlockButtons rendered="{!isRender}">      
+                <apex:commandButton id="savebutton" value="Save" rerender="selectproductlist"  />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    
+        <apex:pageBlock id="addproductlist" title="List of Products" rendered="{!isRender}">
+            <apex:pageblockSection columns="1" >
+                <apex:pageBlocktable value="{!addproductlist}" var="p" columns="5">
+                    <apex:column headerValue="Add">                   
+                        <apex:commandButton value="Add to Cart" action="{!addItem}" reRender="selectproductlist,addproductlist">   
+                            <apex:param name="selectproductId" value="{!p.Id}" />                                                                                                                                                       
+                        </apex:commandbutton>
+                    </apex:column>
+                    <apex:column headerValue="Product Id" value="{!p.id}"/>  
+                    <apex:column headerValue="Product Number" value="{!p.Name}"/>  
+                    <apex:column headerValue="Price" value="{!p.Price__c}"/>  
+                    <apex:column headerValue="Quantity" width="5">                   
+                        <input type="text" name="{!p.Name}" id="{!p.Name}" value="1"/> 
+                    </apex:column>
+                </apex:pageBlocktable>
+            </apex:pageblockSection>
+        </apex:pageBlock>
+    </apex:form>
+    
+
+</apex:page>

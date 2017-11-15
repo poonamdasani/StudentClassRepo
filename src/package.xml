@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>Class__c</members>
-        <members>Project__c</members>
-        <members>Student__c</members>
-        <members>Teach__c</members>
+        <members>ProductSelector</members>
+        <members>ProductSelectorTest</members>
+        <members>PurchaseOrder</members>
+        <members>PurchaseOrderController</members>
+        <members>PurchaseOrderControllerTest</members>
+        <members>PurchaseOrderLineItem</members>
+        <members>PurchaseOrderLineItemTest</members>
+        <members>PurchaseOrderService</members>
+        <members>PurchaseOrderServiceTest</members>
+        <members>PurchaseOrderTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>PurchaseOrderLineItem__c</members>
+        <members>PurchaseOrder__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>PurchaseOrder__c</members>
+        <members>PurchaseOrderLineItem__c</members>
+        <members>Product__c</members>
         <members>Account</members>
         <members>Contact</members>
-        <members>Opportunity</members>
         <name>CustomObject</name>
     </types>
     <types>
-        <members>Class__c</members>
-        <members>Student__c</members>
-        <members>Teach__c</members>
-        <name>CustomTab</name>
+        <members>Purchase_Order</members>
+        <name>ApexPage</name>
     </types>
     <version>38.0</version>
 </Package>
